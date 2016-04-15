@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="space.nandoh.lifttracker.SetRepInput">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/lift_details"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@color/primary"
+            android:textColor="@color/white"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/add_set"
+            android:background="@color/white"
+            android:textColor="@color/primary"
+            android:onClick="addSet"
+            android:elevation="5dp" />
+        <FrameLayout    xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/add_rep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </FrameLayout>
+    </LinearLayout>
+</ScrollView>

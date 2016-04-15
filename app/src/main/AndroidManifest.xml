@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="space.nandoh.lifttracker">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/logo4"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="Welcome">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AddLiftActivity"
+            android:label="Select Your Lift" />
+        <activity
+            android:name=".SetRepInput"
+            android:label="@string/title_activity_set_rep_input" />
+        <activity
+            android:name=".CustomLiftInsert"
+            android:label="@string/title_activity_custome_lift_insert" />
+        <activity
+            android:name=".ViewToday"
+            android:label="@string/title_activity_view_today"></activity>
+    </application>
+
+</manifest>

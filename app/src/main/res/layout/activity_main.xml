@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/background_main"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/title"
+            android:typeface="monospace"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="@string/title"
+            android:textColor="@color/primary"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="30sp"
+            android:gravity="center"
+             />
+        <Button
+            android:id="@+id/add_lift"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="Add a lift"
+            android:onClick="addLift"
+            android:textColor="#ffffff"
+            android:background="@color/primary"
+            android:src="@drawable/lifting5"
+            />
+        <Button
+            android:id="@+id/view_today"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:text="View today's activity"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:background="@color/primary"
+            android:onClick="viewToday"
+            />
+        <Button
+            android:id="@+id/history"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:text="History"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:background="@color/primary"
+            android:layout_gravity="center"
+            />
+        <Button
+            android:id="@+id/custom_lift"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:text="Add custom lift"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:background="@color/primary"
+            android:onClick="addCustomLift"/>
+
+        <Button
+            android:id="@+id/weight"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:text="Add your weight today"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:background="@color/primary"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_gravity="right"
+            android:textColor="@color/primary"
+            android:text="@string/legal"
+            android:paddingBottom="20dp"
+            android:id="@+id/textView"
+            />
+    </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+

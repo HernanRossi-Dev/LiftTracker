@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Lift Track</string>
+
+    <string name="title">Lift Track</string>
+    <string name="legal">&#169; Hernan Rossi 2016</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_add_lift">addLift</string>
+    <string name="add_lift_top">Select your lift</string>
+    <string name="lower_body">Lower Body</string>
+    <string name="core">Core</string>
+    <string name="upper_body">Upper Body</string>
+    <string name="rest">Rest</string>
+    <string name="language_select">Select Language</string>
+    <string name="add_set">Add a set\n    +</string>
+    <string name="enter_new_lift_hint">Type the name of your custom lift here</string>
+    <string name="enter_new_lift_description_hint">Type the description of your custom lift here</string>
+    <string name="input_new_lift">Select the muscle group then type the name\n of the lift in the
+        box below to add</string>
+    <string-array name="muscle_groups">
+        <item>Lower</item>
+        <item>Core</item>
+        <item>Arms</item>
+        <item>Chest</item>
+        <item>Back</item>
+        <item>Shoulder</item>
+    </string-array>
+    <string-array name="upper_body">
+        <item>Upper Body</item>
+        <item>Arms</item>
+        <item>Chest</item>
+        <item>Back</item>
+        <item>Shoulder</item>
+    </string-array>
+    <string name="title_activity_set_rep_input">Current Set</string>
+    <string name="title_activity_custome_lift_insert">Create Custom Lift</string>
+    <string name="title_activity_view_today">View Day\'s Activity</string>
+    <string name="addlift_textsize">16sp</string>
+
+</resources>

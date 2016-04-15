@@ -1,0 +1,15 @@
+<resources>
+    <style name="AppTheme" parent="android:Theme.Material.Light">
+        <!-- Customize your theme here. -->
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:colorPrimaryDark">@color/primary</item>
+        <item name="android:navigationBarColor">@color/primary</item>
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
+
+    <style name="listView" parent="android:style/Widget.ListView">
+        <item name="background">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+
+    </style>
+</resources>

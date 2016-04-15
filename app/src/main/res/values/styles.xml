@@ -1,0 +1,22 @@
+<resources>
+    <style name="spinner_item_style" parent="android:Widget.TextView.SpinnerItem">
+
+    </style>
+    <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+
+    </style>
+
+    <style name="AppTheme" parent="android:Theme.Material.Light">
+    <!-- Customize your theme here. -->
+    <item name="android:colorPrimary">@color/primary</item>
+    <item name="android:colorPrimaryDark">@color/primary</item>
+    <item name="android:navigationBarColor">@color/primary</item>
+    <item name="android:textColorPrimary">@color/white</item>
+
+    </style>
+    <style name="listView" parent="android:style/Widget.ListView">
+        <item name="android:colorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/black</item>
+
+    </style>
+</resources>

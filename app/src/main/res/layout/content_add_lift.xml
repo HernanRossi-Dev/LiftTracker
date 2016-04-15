@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".AddLiftActivity"
+    >
+
+    <TextView
+        android:id="@+id/add_lift_time"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:textSize="15dp"
+
+        android:layout_gravity="center"
+        android:textStyle="bold|italic"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:fontFamily="sans-serif-light"
+        android:background="@color/primary"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        style="@android:style/Widget.Material.Light.ButtonBar"
+        >
+        <Button
+            android:id="@+id/lower_body"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="75dp"
+            android:textSize="@dimen/addlift_textsize"
+            android:text="@string/lower_body"
+            android:background="#ffffff"
+            android:textColor="@color/primary"
+            android:gravity="center"
+            android:textStyle="bold"
+            style="?android:attr/borderlessButtonStyle"
+            android:onClick="lowerBodyList"
+            />
+        <Button
+            android:id="@+id/core"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="75dp"
+            android:textSize="@dimen/addlift_textsize"
+            android:text="@string/core"
+            android:background="#ffffff"
+            android:textColor="@color/primary"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:onClick="coreList"
+            />
+        <Spinner
+            android:id="@+id/upper_body_spinner"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="75dp"
+            android:background="@color/white"
+            android:textColor="@color/primary"
+            >
+        </Spinner>
+
+    </LinearLayout>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
