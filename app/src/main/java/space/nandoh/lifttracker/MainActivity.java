@@ -75,6 +75,23 @@ public class MainActivity extends Activity {
      **********************************************************************************************/
     public void viewToday(View view) {
         Intent intent = new Intent(this,ViewToday.class );
+
+        startActivity(intent);
+    }
+    /**********************************************************************************************
+     *                                      viewHistory
+     * @param view
+     *
+     *              Launch the activity that will locate all of the lift data that has been entered
+     *                  in the SAVE_DATA table that correspond to each date
+     *                      in day:month:year String format and output it in a list according to each
+     *                      day and give the name of the most common muscle group worked on that day
+     *                      as well the number of exercises done and total weight lifted over all
+     *                      workouts that day.
+     *
+     **********************************************************************************************/
+    public void viewHistory(View view) {
+        Intent intent = new Intent(this,ViewHistory.class );
         startActivity(intent);
     }
 
@@ -92,10 +109,11 @@ public class MainActivity extends Activity {
     }
 
     /**********************************************************************************************
-     *
+     *                                      onCreateOptionsMenu
      * @param menu
-     * @return
+     * @return : boolean
      *
+     *              This method gets called on creation to inflate the options menu
      **********************************************************************************************/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -105,10 +123,12 @@ public class MainActivity extends Activity {
     }
 
     /**********************************************************************************************
-     *
+     *                                      onOptionItemSelected
      * @param item
-     * @return
+     * @return : boolean
      *
+     *              This method will get called when an item in the option menu is selected
+     *                  by the user and act appropriately
      **********************************************************************************************/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -129,12 +149,12 @@ public class MainActivity extends Activity {
 
     /**********************************************************************************************
      *                                      getDate
-     * @return
+     * @return : HashMap<String, String>
      *
      *            Get date and parse it if an error occurs return String null
      *
      **********************************************************************************************/
-    public HashMap<String, String> getDate() {
+    public static HashMap<String, String> getDate() {
         Date date = new Date();
         // Create regex to decompose the date into parts
         String pattern = "(\\w+)(\\s+)(\\w+)(\\s+)(\\d+)(\\s+)(\\S+)(\\s+)(\\w+)(\\s+)(\\d+)";

@@ -24,6 +24,7 @@ public class LiftNameListFragment extends Fragment {
     private ArrayAdapter<String> adapter;
     private String lift;
     private String date;
+    private String muscle_group;
     private String table_name;
     private String[] names;
     // This variable will check on restart/resume whether a lift has been chosen and auto launch the
@@ -54,6 +55,7 @@ public class LiftNameListFragment extends Fragment {
             Bundle bundle = new Bundle();
             bundle.putString("lift_selected", lift);
             bundle.putString("date", date);
+            bundle.putString("muscle_group", muscle_group);
             WeightSelectorFragment weightSelectorFragment = new WeightSelectorFragment();
             weightSelectorFragment.setArguments(bundle);
             // Start a fragment transaction
@@ -65,6 +67,7 @@ public class LiftNameListFragment extends Fragment {
         }
         date = getArguments().getString("date");
         table_name = getArguments().getString("table_name");
+        muscle_group = getArguments().getString("muscle_group");
         // Access the database and get the names form the CORE table
         try{
             SQLiteOpenHelper liftDatabaseHelper = new LiftDatabaseHelper(getActivity());
@@ -80,8 +83,9 @@ public class LiftNameListFragment extends Fragment {
                 // Close the database and cursor
                 cursor_count.close();
                 db.close();
+                // Reopen the database to read the next required data records
                 SQLiteDatabase db1 = liftDatabaseHelper.getReadableDatabase();
-                // Get the names of all the records
+                // Get the names of all the records i.e the specific workout names
                 Cursor cursor = db1.query(table_name,
                         new String[]{"NAME"},
                         null, null, null, null, null);
@@ -130,6 +134,7 @@ public class LiftNameListFragment extends Fragment {
                     Bundle bundle = new Bundle();
                     bundle.putString("lift_selected", lift);
                     bundle.putString("date", date);
+                    bundle.putString("muscle_group", muscle_group);
                     lift_chosen = true;
                     WeightSelectorFragment weightSelectorFragment = new WeightSelectorFragment();
                     weightSelectorFragment.setArguments(bundle);
@@ -158,6 +163,7 @@ public class LiftNameListFragment extends Fragment {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putBoolean("lift_chosen", lift_chosen);
         savedInstanceState.putString("lift", lift);
+        savedInstanceState.putString("muscle_group", muscle_group);
         super.onSaveInstanceState(savedInstanceState);
     }
 }

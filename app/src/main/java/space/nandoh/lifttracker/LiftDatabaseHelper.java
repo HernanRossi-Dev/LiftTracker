@@ -156,6 +156,7 @@ public class LiftDatabaseHelper extends SQLiteOpenHelper {
                     + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "DATE TEXT, "         //  Will be in day:month:year
                     + "LIFT_NAME TEXT, "
+                    + "MUSCLE_GROUP TEXT,"
                     + "WEIGHT_TYPE TEXT, "
                     + "REPS_WEIGHT TEXT, "
                     + "TOTAL_WEIGHT INTEGER);");

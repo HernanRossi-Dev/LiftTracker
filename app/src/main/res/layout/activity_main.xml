@@ -56,6 +56,7 @@
             android:textColor="#ffffff"
             android:background="@color/primary"
             android:layout_gravity="center"
+            android:onClick="viewHistory"
             />
         <Button
             android:id="@+id/custom_lift"

@@ -28,6 +28,7 @@ public class SetRepInput extends Activity {
     private String  lift_choice;
     private double  total_weight = 0;
     private String current_set_info = "";
+    private String muscle_group;
 
     /**********************************************************************************************
      *                              onCreate
@@ -48,6 +49,7 @@ public class SetRepInput extends Activity {
         Intent intent = getIntent();
         weight_type = intent.getStringExtra("weight_type");
         lift_choice = intent.getStringExtra("lift_choice");
+        muscle_group = intent.getStringExtra("muscle_group");
         String details = "Performing: " + lift_choice + " using " + weight_type;
         TextView detail_view = (TextView)findViewById(R.id.lift_details);
         detail_view.setText(details);
@@ -153,6 +155,7 @@ public class SetRepInput extends Activity {
             ContentValues lift = new ContentValues();
             lift.put("DATE", date);
             lift.put("LIFT_NAME", lift_choice);
+            lift.put("MUSCLE_GROUP", muscle_group);
             lift.put("WEIGHT_TYPE", weight_type );
             lift.put("REPS_WEIGHT", full_lift);
             lift.put("TOTAL_WEIGHT", total_weight);
@@ -162,6 +165,7 @@ public class SetRepInput extends Activity {
         }catch (SQLiteException e) {
             Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
             toast.show();
+           // getFragmentManager().popBackStack();
             onBackPressed();
         }
     }

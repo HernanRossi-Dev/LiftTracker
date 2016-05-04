@@ -2,6 +2,7 @@
     <string name="app_name">Lift Track</string>
 
     <string name="title">Lift Track</string>
+    <string name="view_history_header">Select a day to view full breakdown:</string>
     <string name="legal">&#169; Hernan Rossi 2016</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_add_lift">addLift</string>
@@ -35,5 +36,6 @@
     <string name="title_activity_custome_lift_insert">Create Custom Lift</string>
     <string name="title_activity_view_today">View Day\'s Activity</string>
     <string name="addlift_textsize">16sp</string>
+    <string name="title_activity_view_history">ViewHistory</string>
 
 </resources>

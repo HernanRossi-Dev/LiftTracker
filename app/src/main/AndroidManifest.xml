@@ -27,7 +27,10 @@
             android:label="@string/title_activity_custome_lift_insert" />
         <activity
             android:name=".ViewToday"
-            android:label="@string/title_activity_view_today"></activity>
+            android:label="@string/title_activity_view_today" />
+        <activity
+            android:name=".ViewHistory"
+            android:label="@string/title_activity_view_history"></activity>
     </application>
 
 </manifest>

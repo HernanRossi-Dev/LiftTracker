@@ -70,6 +70,7 @@ public class AddLiftActivity extends Activity implements AdapterView.OnItemSelec
             Bundle bundle = new Bundle();
             bundle.putString("date", date);
             bundle.putString("table_name", muscleGroup);
+            bundle.putString("muscle_group", mg);
             listFrag.setArguments(bundle);
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.replace(R.id.fragment_container, listFrag);
@@ -104,6 +105,7 @@ public class AddLiftActivity extends Activity implements AdapterView.OnItemSelec
         Bundle bundle = new Bundle();
         bundle.putString("date", date);
         bundle.putString("table_name", "LOWER");
+        bundle.putString("muscle_group", "Lower Body");
         listFrag.setArguments(bundle);
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, listFrag);
@@ -128,6 +130,7 @@ public class AddLiftActivity extends Activity implements AdapterView.OnItemSelec
         Bundle bundle = new Bundle();
         bundle.putString("date", date);
         bundle.putString("table_name", "CORE");
+        bundle.putString("muscle_group", "Core");
         listFrag.setArguments(bundle);
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, listFrag);
