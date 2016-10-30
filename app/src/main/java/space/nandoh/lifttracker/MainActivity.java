@@ -151,7 +151,7 @@ public class MainActivity extends Activity {
      *                                      getDate
      * @return : HashMap<String, String>
      *
-     *            Get date and parse it if an error occurs return String null
+     *            Get date and parse it if an error occurs return null
      *
      **********************************************************************************************/
     public static HashMap<String, String> getDate() {

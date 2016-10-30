@@ -34,9 +34,7 @@ public class ViewToday extends Activity {
         // Get the date from the mainActivity's getDate() method
         Intent intent = getIntent();
         if(intent.getStringExtra("day") == null) {
-            HashMap<String, String> date_map = new HashMap<String, String>();
-            MainActivity new_main = new MainActivity();
-            date_map = new_main.getDate();
+            HashMap<String, String> date_map = new GetDate().dateMap();
             // Get the integer representation of the day month and year for database saving
             String day_num = date_map.get("day_number");
             String day_word = date_map.get("day_word");

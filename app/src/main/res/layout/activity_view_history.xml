@@ -14,7 +14,7 @@
         android:background="@color/white"
         android:textColor="@color/primary"
         android:textStyle="bold"
-        android:textSize="18dp"/>
+        android:textSize="18sp"/>
         <ListView
             android:id="@+id/listview_history"
             android:layout_width="match_parent"

@@ -118,15 +118,19 @@ public class ViewHistory extends Activity {
         TextView textView = (TextView)findViewById(R.id.history_title);
         String titleText = (String)textView.getText();
         HashMap<String, String> date = MainActivity.getDate();
-        titleText = titleText + "\nToday is " + date.get("day_word") + " the " + date.get("day_number");
-        textView.setText(titleText);
+        try {
+            titleText = titleText + "\nToday is " + date.get("day_word") + " the " + date.get("day_number");
+            textView.setText(titleText);
+        }catch(NullPointerException e){
+
+        }
 
         // Create an onItemClickListener to the listView to get the day that the user would like to see
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView parentView, View childVIew,
                                     int position, long id ) {
                 // Method to run when an item in the list of days is clicks
-                selected_day = days[position].toString();
+                selected_day = days[position];
 
             }
         });
