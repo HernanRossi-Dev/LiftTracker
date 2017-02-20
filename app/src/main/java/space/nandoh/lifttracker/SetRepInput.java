@@ -106,8 +106,13 @@ public class SetRepInput extends Activity {
         EditText repsView = (EditText)findViewById(R.id.enter_reps);
         String reps = repsView.getText().toString();
         String weight = weightView.getText().toString();
-        double current_total =  Double.parseDouble(weight) * Double.parseDouble(reps);
-        total_weight = total_weight + current_total;
+        try {
+            double current_total = Double.parseDouble(weight) * Double.parseDouble(reps);
+
+            total_weight = total_weight + current_total;
+        }catch(NullPointerException e){
+
+        }
         String savedSoFar = textView.getText().toString();
         String current = "    " + savedSoFar + "\n"+ weight + " lbs   x   " + reps;
         current_set_info = current;

@@ -40,7 +40,7 @@ public class ViewToday extends Activity {
             String day_word = date_map.get("day_word");
             String month = date_map.get("month");
             String year = date_map.get("year");
-            date = day_word+ " "+ day_num + " " + month + " " + year;
+            date =  day_num + "\\" + month + "\\" + year;
         } else {
             // Get the day from the intent that was added by the history activity
         }
@@ -55,8 +55,9 @@ public class ViewToday extends Activity {
             // Get a cursor with all of the records for today
             Cursor cursor = db.query ("SAVE_DATA",
                     new String[] {"DATE", "LIFT_NAME","MUSCLE_GROUP","WEIGHT_TYPE", "REPS_WEIGHT", "TOTAL_WEIGHT"},
-                   "DATE = ?",
+                  "DATE = ?",
                    new String[] {date},
+                   // null,null,
                    null, null, null);
             if(cursor.moveToFirst()) {
                 String lift_name = cursor.getString(1);
@@ -64,7 +65,7 @@ public class ViewToday extends Activity {
                 String weight_type = cursor.getString(3);
                 String lift_info = cursor.getString(4);
                 String total_weight = cursor.getString(5);
-                output = output + lift_name + " done using " + weight_type +  ":\n" +
+                output = "Type: " + muscle_group + "\n" +lift_name + " done using " + weight_type +  ":\n" +
                         lift_info + "\n" + "The total weight lifted for this set was: " +
                         total_weight + " lbs\n";
                 while(cursor.moveToNext()) {
@@ -74,9 +75,9 @@ public class ViewToday extends Activity {
                     lift_info = cursor.getString(4);
                     total_weight = cursor.getString(5);
                     output = output + " -------------------------------------\n" +
-                            lift_name + " done using " + weight_type +  "\n" +
+                            "Type: " + muscle_group + "\n" +lift_name + " done using " + weight_type +  ":\n" +
                             lift_info + "\n" + "The total weight lifted for this set was: " +
-                            total_weight + "\n";
+                            total_weight + " lbs\n";;
                 }
                 // Set the output text view to show all of the lift that were found for today's date
                 textView.setText(output);

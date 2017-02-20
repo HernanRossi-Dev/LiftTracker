@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
+
+import space.nandoh.lifttracker.adapters.HistoryAdapter;
 
 /***************************************************************************************************
  **
@@ -35,6 +39,9 @@ public class ViewHistory extends Activity {
     private ArrayAdapter<String> adapter; // Array adapter to add the individual days to the viewList
     private ArrayList<String> day_array = new ArrayList<>(); // Hold date for each individual day in the saved data
     private String selected_day; // The day that has been selected by the user to see complete breakdown of
+    private RecyclerView mRecyclerView;
+    private HistoryAdapter mAdapter;
+    private RecyclerView.LayoutManager mlayoutManager;
 
     public ViewHistory(){
     }
@@ -91,11 +98,18 @@ public class ViewHistory extends Activity {
             Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
             toast.show();
         }
-        // Setup the listView adapter to show data for days
         String[] days = new String[day_array.size()];
         day_array.toArray(days);
-        adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_list_item_activated_1, days);
+        // Setup the listView adapter to show data for days
+        mRecyclerView = (RecyclerView) findViewById(R.id.listview_history);
+        mRecyclerView.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(llm);
+        mAdapter = new HistoryAdapter(day_array);
+        mRecyclerView.setAdapter(mAdapter);
+
+
     }
 
     /**********************************************************************************************
@@ -113,7 +127,6 @@ public class ViewHistory extends Activity {
         super.onStart();
         final String[] days = new String[day_array.size()];
         day_array.toArray(days);
-        ListView listView = (ListView)findViewById(R.id.listview_history);
         // Update the title to show the current day to the user for ease of reading
         TextView textView = (TextView)findViewById(R.id.history_title);
         String titleText = (String)textView.getText();
@@ -125,16 +138,6 @@ public class ViewHistory extends Activity {
 
         }
 
-        // Create an onItemClickListener to the listView to get the day that the user would like to see
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            public void onItemClick(AdapterView parentView, View childVIew,
-                                    int position, long id ) {
-                // Method to run when an item in the list of days is clicks
-                selected_day = days[position];
-
-            }
-        });
-        listView.setAdapter(adapter);
     }
 
 }
