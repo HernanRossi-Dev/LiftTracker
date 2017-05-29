@@ -20,10 +20,8 @@ import android.widget.Toast;
  *
  *              Activity to display and select the type of weight that the current exercise will be
  *              done using
- *
  **************************************************************************************************/
 public class WeightSelectorFragment extends Fragment {
-
     private static final String[] weight_types = {"Barbell", "Dumbbell", "BodyWeight", "Cable", "Machine", "Kettlebell"};
     private String weight_type;
     private String lift_choice;
@@ -32,14 +30,8 @@ public class WeightSelectorFragment extends Fragment {
     private ArrayAdapter<String> adapter;
 
     public WeightSelectorFragment() {
-        // Required empty public constructor
     }
 
-    /**********************************************************************************************
-     *                                      onCreate
-     * @param savedInstanceState
-     *
-     **********************************************************************************************/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,17 +48,6 @@ public class WeightSelectorFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_weight_selector, container, false);
     }
 
-    /***********************************************************************************************
-     *                                      onStart()
-     *
-     *              This method will be run when the activity is both started for the first time
-     *              after the onCreate method has initialized it as well as whenever the activity
-     *              is restarted after it has been stopped for any reason:
-     *                  gets the id of the listview and links a onitemclicklistener to the view
-     *                  which will get the weight type that the user selected and add it to an itent
-     *                  which will launch the next activity which will get the input for the reps
-     *                  and weight of the current exercise.
-     **********************************************************************************************/
     @Override
     public void onStart() {
         super.onStart();
@@ -76,7 +57,6 @@ public class WeightSelectorFragment extends Fragment {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView parentView, View childView,
                                         int position, long id) {
-                    // Start a new intent to create the rep/set/weight activity
                     weight_type = weight_types[position].toString();
                     Intent intent = new Intent(getActivity(), SetRepInput.class);
                     intent.putExtra("weight_type", weight_type);
@@ -90,14 +70,6 @@ public class WeightSelectorFragment extends Fragment {
         }
     }
 
-    /**********************************************************************************************
-     *                                      onSaveInstanceState
-     *
-     *              Save the instance variable lift_chosen when the activity is destroyed which
-     *              tracks whether or not a lift has been chosen already and automatically launch
-     *              the weight type selector fragment list.
-     *
-     **********************************************************************************************/
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putString("weight_type", weight_type);

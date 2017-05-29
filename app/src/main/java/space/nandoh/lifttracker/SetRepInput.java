@@ -20,8 +20,7 @@ import java.util.HashMap;
 /**************************************************************************************************
  * Create by Hernan Rossi
  *      This class will be where the details of the current lift will get input and then saved to the
- *          database for documenting in the history and today sections
- *
+ *          database for documenting in the history and today section
  **************************************************************************************************/
 public class SetRepInput extends Activity {
     private String  weight_type;
@@ -30,13 +29,6 @@ public class SetRepInput extends Activity {
     private String current_set_info = "";
     private String muscle_group;
 
-    /**********************************************************************************************
-     *                              onCreate
-     * @param savedInstanceState
-     *
-     *                  Gets called when the activity is created or recreated
-     *
-     **********************************************************************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,14 +47,6 @@ public class SetRepInput extends Activity {
         detail_view.setText(details);
     }
 
-    /**********************************************************************************************
-     *                                      onStart
-     *
-     *              After the onCreate method has been run and the views have been created get
-     *                  the view id of the current set info textView and update it with the saved
-     *                  data if there is any so far
-     *
-     **********************************************************************************************/
     @Override
     public void onStart() {
         super.onStart();
@@ -78,7 +62,6 @@ public class SetRepInput extends Activity {
      * @param view
      *
      *              Launch the fragment that will take the users input for the current lift
-     *
      **********************************************************************************************/
     public void addSet(View view)    {
         AddRepFragment addfrag = new AddRepFragment();
@@ -96,7 +79,6 @@ public class SetRepInput extends Activity {
      *                  Take the current input from the edit textView and add it to the total
      *                      set view then reset the edit views for the next set to be input
      *                      save the weight into the total_weight variable for saving to the database
-     *
      **********************************************************************************************/
     public void saveAddSet(View view) {
         // The window to output the saved info
@@ -130,7 +112,6 @@ public class SetRepInput extends Activity {
      *                          WEIGHT_TYPE TEXT
      *                          REPS_WEIGHT TEXT
      *                          TOTAL_WEIGHT INTEGER
-     *
      **********************************************************************************************/
     public void saveExit(View view) {
         // Save the current lift to the database and go back to main menu
@@ -143,12 +124,8 @@ public class SetRepInput extends Activity {
         String month = date_map.get("month");
         String year = date_map.get("year");
         String date = day_num + "\\" + month + "\\" + year;
-
-        // Get the total user input from the textView:current_set_info
         TextView textView = (TextView)findViewById(R.id.current_set_info);
         String full_lift = textView.getText().toString();
-
-        // Try to get a link to the database
         try{
             SQLiteOpenHelper liftDatabaseHelper = new LiftDatabaseHelper(this);
             SQLiteDatabase db = liftDatabaseHelper.getWritableDatabase();
@@ -170,13 +147,6 @@ public class SetRepInput extends Activity {
         }
     }
 
-    /**********************************************************************************************
-     *                                      onSaveInstanceState
-     *
-     *              Save the instance state for the current lift info when the activity is destroyed
-     *              which tracks current lift data that has been input so far by the user
-     *
-     **********************************************************************************************/
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putString("current_set_info", current_set_info);

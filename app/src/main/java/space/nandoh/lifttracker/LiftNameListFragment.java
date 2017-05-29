@@ -20,35 +20,21 @@ import android.widget.Toast;
  *
  **************************************************************************************************/
 public class LiftNameListFragment extends Fragment {
-
     private ArrayAdapter<String> adapter;
     private String lift;
     private String date;
     private String muscle_group;
     private String table_name;
     private String[] names;
-    // This variable will check on restart/resume whether a lift has been chosen and auto launch the
-    // weight selector fragment
     private boolean lift_chosen;
 
     public LiftNameListFragment() {
-        // Required empty public constructor
     }
 
-    /**********************************************************************************************
-     *                                      onCreateView
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
-     *
-     *              Gets called when the fragment is first created
-     *
-     **********************************************************************************************/
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         if(savedInstanceState != null) {
             lift_chosen = savedInstanceState.getBoolean("lift_chosen");
             lift = savedInstanceState.getString("lift");
@@ -58,7 +44,6 @@ public class LiftNameListFragment extends Fragment {
             bundle.putString("muscle_group", muscle_group);
             WeightSelectorFragment weightSelectorFragment = new WeightSelectorFragment();
             weightSelectorFragment.setArguments(bundle);
-            // Start a fragment transaction
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.replace(R.id.fragment_container2, weightSelectorFragment);
             // Don't add the fragment to the back stack : ft.addToBackStack(null);
@@ -80,10 +65,8 @@ public class LiftNameListFragment extends Fragment {
             if(cursor_count.moveToFirst()) {
                 int count = cursor_count.getInt(0);
                 names = new String[count];
-                // Close the database and cursor
                 cursor_count.close();
                 db.close();
-                // Reopen the database to read the next required data records
                 SQLiteDatabase db1 = liftDatabaseHelper.getReadableDatabase();
                 // Get the names of all the records i.e the specific workout names
                 Cursor cursor = db1.query(table_name,
@@ -110,16 +93,7 @@ public class LiftNameListFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_lift_name_list, container, false);
     }
 
-    /**********************************************************************************************
-     *                                      onStart
-     *
-     *              After the onCreate method has been run and the views have been created get
-     *                  the view id of the list view and link it to the array adapter and set
-     *                  a setOnItemClickListener to react to user selection that will launch the
-     *                  weight WeightSelectorFragment that will ask the user what type of weight
-     *                  they are using for the current lift.
-     *
-     **********************************************************************************************/
+
     @Override
     public void onStart() {
         super.onStart();
@@ -138,7 +112,6 @@ public class LiftNameListFragment extends Fragment {
                     lift_chosen = true;
                     WeightSelectorFragment weightSelectorFragment = new WeightSelectorFragment();
                     weightSelectorFragment.setArguments(bundle);
-                    // Start a fragment transaction
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
                     ft.replace(R.id.fragment_container2, weightSelectorFragment);
                     // Don't add the fragment to the back stack : ft.addToBackStack(null);
@@ -146,19 +119,11 @@ public class LiftNameListFragment extends Fragment {
                     ft.commit();
                 }
             });
-            // Set the adapter to the ListView
             listView.setAdapter(adapter);
         }
     }
 
-    /**********************************************************************************************
-     *                                      onSaveInstanceState
-     *
-     *              Save the instance variable lift_chosen when the activity is destroyed which
-     *              tracks whether or not a lift has been chosen already and automatically launch
-     *              the weight type selector fragment list.
-     *
-     **********************************************************************************************/
+
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putBoolean("lift_chosen", lift_chosen);

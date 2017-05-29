@@ -16,21 +16,13 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /***************************************************************************************************
- **
  *  Created by Hernan Rossi.
- **
  **************************************************************************************************/
 
 public class MainActivity extends Activity {
-
     private static final String BUTTON_TODAY = "Add a lift";
     private static HashMap<String, String> date_map = new HashMap<String, String>();
 
-    /**********************************************************************************************
-     *                                      onCreate
-     * @param savedInstanceState
-     *
-     **********************************************************************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +31,6 @@ public class MainActivity extends Activity {
         date_map = getDate();
         String date_text;
         if((date_text = date_map.get("addLiftTest")) == null){
-            // Error getting date don't add it
         }else {
             Button today = (Button) findViewById(R.id.add_lift);
             today.setText(date_text);
@@ -55,11 +46,9 @@ public class MainActivity extends Activity {
      *                  Launch the add lift activity that will ask the user for what muscle group
      *                       they are working on the current lift -> what specific exercise they are
      *                       doing -> what type of weight they are using for it.
-     *
      **********************************************************************************************/
     public void addLift(View view)  {
         Intent intent = new Intent(this, AddLiftActivity.class);
-        // Add the date hashmap to the intent to pass to the activity
         intent.putExtra("DateMap", date_map);
         startActivity(intent);
     }
@@ -71,11 +60,9 @@ public class MainActivity extends Activity {
      *              Launch the activity that will locate all of the lift data that has been entered
      *                  in the SAVE_DATA table that correspond to today's date
      *                      in day:month:year String format
-     *
      **********************************************************************************************/
     public void viewToday(View view) {
         Intent intent = new Intent(this,ViewToday.class );
-
         startActivity(intent);
     }
     /**********************************************************************************************
@@ -88,7 +75,6 @@ public class MainActivity extends Activity {
      *                      day and give the name of the most common muscle group worked on that day
      *                      as well the number of exercises done and total weight lifted over all
      *                      workouts that day.
-     *
      **********************************************************************************************/
     public void viewHistory(View view) {
         Intent intent = new Intent(this,ViewHistory.class );
@@ -101,42 +87,26 @@ public class MainActivity extends Activity {
      *
      *              launch activity to add a custom user lift to the list of available
      *                               in the lift add activity
-     *
      **********************************************************************************************/
     public void addCustomLift(View view) {
         Intent intent = new Intent(this, CustomLiftInsert.class);
         startActivity(intent);
     }
 
-    /**********************************************************************************************
-     *                                      onCreateOptionsMenu
-     * @param menu
-     * @return : boolean
-     *
-     *              This method gets called on creation to inflate the options menu
-     **********************************************************************************************/
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
-    /**********************************************************************************************
-     *                                      onOptionItemSelected
-     * @param item
-     * @return : boolean
-     *
-     *              This method will get called when an item in the option menu is selected
-     *                  by the user and act appropriately
-     **********************************************************************************************/
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }else if (id == R.id.select_language) {
@@ -152,11 +122,9 @@ public class MainActivity extends Activity {
      * @return : HashMap<String, String>
      *
      *            Get date and parse it if an error occurs return String null
-     *
      **********************************************************************************************/
     public static HashMap<String, String> getDate() {
         Date date = new Date();
-        // Create regex to decompose the date into parts
         String pattern = "(\\w+)(\\s+)(\\w+)(\\s+)(\\d+)(\\s+)(\\S+)(\\s+)(\\w+)(\\s+)(\\d+)";
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(date.toString());
@@ -167,13 +135,11 @@ public class MainActivity extends Activity {
             date_map.put("month", m.group(3));
             date_map.put("year", m.group(11));
             String full_date = m.group(1) +  " " + m.group(3) + " " + m.group(5)+ " " + m.group(11);
-            // Add the current day's date to the add lift button
             date_map.put("full_date",full_date );
             String addLiftText = BUTTON_TODAY + " \n" +full_date;
             date_map.put("addLiftText", addLiftText);
             return(date_map);
         }else{
-            // Error parsing date do not alter the text
             return null;
         }
     }

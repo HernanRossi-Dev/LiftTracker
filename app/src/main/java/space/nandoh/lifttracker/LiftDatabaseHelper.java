@@ -8,53 +8,31 @@ import android.database.sqlite.SQLiteOpenHelper;
 /***************************************************************************************************
  **
  *  Created by Hernan Rossi on 4/6/2016.
- **
  **************************************************************************************************/
 public class LiftDatabaseHelper extends SQLiteOpenHelper {
-
     // Databases for the lift tables.
     private static final String DB_NAME_LIFTS = "lifts";
     private static final int DB_LIFTS_VERSION = 1;
-    // _id, muscle group,, name, description, link to google search, image? if can find non copyright pictures.
-    //_id, date in day/month/year, lift type, weight type, weight, reps, average wight, total weight lifted, average reps.
+    //_id, date in day/month/yealift type, weight type, weight, reps, average wight, total weight lifted, average reps.r,
 
-    /***********************************************************************************************
-     *
-     *   SQLiteOpenHelper default constructor
-     *
-     **********************************************************************************************/
     LiftDatabaseHelper(Context context) {
         super(context, DB_NAME_LIFTS, null, DB_LIFTS_VERSION);
     }
 
-    /**********************************************************************************************
-     *
-     *   onCreate method is a sqlite database helper method
-     *       is called when database is first created and populates it with tables and records
-     *
-     **********************************************************************************************/
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         //create all the muscle group tables
         updateMyDatabase(db, 0, DB_LIFTS_VERSION);
     }
 
-    /**********************************************************************************************
-     *
-     *   onUpgrade method is a built in method of the database helper class
-     *      checks if an upgrade is needed and acts appropriately according to custom actions
-     *
-     **********************************************************************************************/
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         updateMyDatabase(db, oldVersion, newVersion);
     }
 
-    /**********************************************************************************************
-     *
-     *       Helper method to insert items into the individual muscle group tables of the database
-     *
-     *********************************************************************************************/
+
     private static void insertLift(SQLiteDatabase db, String name, String description,
                                         String searchLink, String image_id, String muscleGroup) {
         ContentValues lift = new ContentValues();
@@ -65,11 +43,7 @@ public class LiftDatabaseHelper extends SQLiteOpenHelper {
         db.insert(muscleGroup, null, lift);
     }
 
-    /**********************************************************************************************
-     *
-     *       Create a new muscle group table for lifts
-     *
-     **********************************************************************************************/
+
     private void createTable(SQLiteDatabase db, String tableName) {
         db.execSQL("CREATE TABLE " + tableName + " ("
                 + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -79,11 +53,6 @@ public class LiftDatabaseHelper extends SQLiteOpenHelper {
                 + "IMAGE_RESOURCE_ID INTEGER);");
     }
 
-    /**********************************************************************************************
-     *
-     * Helper method to either create or upgrade the database if it is needed
-     *
-     *********************************************************************************************/
     private void updateMyDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
         if(oldVersion < 1) {
             // Create the default muscle group tables

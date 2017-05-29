@@ -22,16 +22,11 @@ public class ViewToday extends Activity {
 
     private String output = "";
     private String date= "";
-    /**********************************************************************************************
-     *                                      onCreate
-     * @param savedInstanceState
-     *
-     **********************************************************************************************/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_today);
-        // Get the date from the mainActivity's getDate() method
         Intent intent = getIntent();
         if(intent.getStringExtra("day") == null) {
             HashMap<String, String> date_map = new HashMap<String, String>();
@@ -46,15 +41,12 @@ public class ViewToday extends Activity {
         } else {
             // Get the day from the intent that was added by the history activity
         }
-        // Get the views where the data will be output for the user to see
         TextView textViewDate = (TextView) findViewById(R.id.view_today_date);
         textViewDate.setText(date);
         TextView textView = (TextView) findViewById(R.id.view_today_output);
-        // Try to access the database and retrieve all of the data associated with today
         try {
             SQLiteOpenHelper liftDatabaseHelper = new LiftDatabaseHelper(this);
             SQLiteDatabase db = liftDatabaseHelper.getReadableDatabase();
-            // Get a cursor with all of the records for today
             Cursor cursor = db.query ("SAVE_DATA",
                     new String[] {"DATE", "LIFT_NAME","MUSCLE_GROUP","WEIGHT_TYPE", "REPS_WEIGHT", "TOTAL_WEIGHT"},
                    "DATE = ?",
@@ -80,7 +72,6 @@ public class ViewToday extends Activity {
                             lift_info + "\n" + "The total weight lifted for this set was: " +
                             total_weight + "\n";
                 }
-                // Set the output text view to show all of the lift that were found for today's date
                 textView.setText(output);
             }
             cursor.close();
@@ -89,8 +80,6 @@ public class ViewToday extends Activity {
             String text = "Failed access the database";
             Toast toast = Toast.makeText(this,e.toString() , Toast.LENGTH_LONG);
             toast.show();
-
         }
     }
-
 }

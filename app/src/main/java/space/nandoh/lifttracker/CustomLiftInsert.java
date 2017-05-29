@@ -16,33 +16,21 @@ import android.widget.Toast;
 /***************************************************************************************************
  **
  *  Created by Hernan Rossi
- **
  **************************************************************************************************/
 public class CustomLiftInsert extends Activity implements AdapterView.OnItemSelectedListener {
-    // Variables for save state
     private String muscleGroup = "";
     private String newLift = "";
     private String newliftDescription = "";
 
-    /**********************************************************************************************
-     *                                      onCreate
-     * @param savedInstanceState
-     *
-     **********************************************************************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custome_lift_insert);
-        // Populate the spinner with muscle group options
         Spinner spinner = (Spinner)findViewById(R.id.spinner);
-        // Specify the interface implementation
         spinner.setOnItemSelectedListener(this);
-        // Create array adapter with the string array in the strings resource file
         ArrayAdapter<CharSequence> adapter =  ArrayAdapter.createFromResource(this,
                 R.array.muscle_groups, R.layout.spinner_item);
-        // Specify the layout to use when the list appears
         adapter.setDropDownViewResource(R.layout.spinner_dropdown);
-        // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
     }
 
@@ -53,13 +41,9 @@ public class CustomLiftInsert extends Activity implements AdapterView.OnItemSele
      * @param pos
      * @param id
      *          The method that will respond to the clicking of an item in the spinner menu
-     *
      **********************************************************************************************/
     public void onItemSelected(AdapterView parent, View view, int pos, long id) {
-        // An item was selected. Retrieve the selected item using the
-        // parent.getItemAtPosition(pos) method
         String mg = (String) parent.getItemAtPosition(pos);
-        // Set the current lifts muscle group to the selected item
         muscleGroup = mg;
     }
 
@@ -70,12 +54,10 @@ public class CustomLiftInsert extends Activity implements AdapterView.OnItemSele
      *
      **********************************************************************************************/
     public void saveNewLift(View view) {
-        // Get the name and description of the new lift
         EditText editText = (EditText) findViewById(R.id.new_lift);
         newLift = editText.getText().toString();
         EditText editTextDescription = (EditText) findViewById(R.id.new_lift_description);
         newliftDescription = editTextDescription.getText().toString();
-        // Try to insert the new list into the database
         try{
             SQLiteOpenHelper liftDatabaseHelper = new LiftDatabaseHelper(this);
             SQLiteDatabase db = liftDatabaseHelper.getWritableDatabase();
@@ -93,11 +75,6 @@ public class CustomLiftInsert extends Activity implements AdapterView.OnItemSele
         }
     }
 
-    /**********************************************************************************************
-     *
-     * @param parent
-     *
-     **********************************************************************************************/
     public void onNothingSelected(AdapterView parent) {
         // Another interface callback
     }
