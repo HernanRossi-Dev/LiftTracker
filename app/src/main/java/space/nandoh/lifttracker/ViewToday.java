@@ -29,15 +29,13 @@ public class ViewToday extends Activity {
         setContentView(R.layout.activity_view_today);
         Intent intent = getIntent();
         if(intent.getStringExtra("day") == null) {
-            HashMap<String, String> date_map = new HashMap<String, String>();
-            MainActivity new_main = new MainActivity();
-            date_map = new_main.getDate();
+            HashMap<String, String> date_map = new GetDate().dateMap();
             // Get the integer representation of the day month and year for database saving
             String day_num = date_map.get("day_number");
             String day_word = date_map.get("day_word");
             String month = date_map.get("month");
             String year = date_map.get("year");
-            date = day_word+ " "+ day_num + " " + month + " " + year;
+            date =  day_num + "\\" + month + "\\" + year;
         } else {
             // Get the day from the intent that was added by the history activity
         }
@@ -49,8 +47,9 @@ public class ViewToday extends Activity {
             SQLiteDatabase db = liftDatabaseHelper.getReadableDatabase();
             Cursor cursor = db.query ("SAVE_DATA",
                     new String[] {"DATE", "LIFT_NAME","MUSCLE_GROUP","WEIGHT_TYPE", "REPS_WEIGHT", "TOTAL_WEIGHT"},
-                   "DATE = ?",
+                  "DATE = ?",
                    new String[] {date},
+                   // null,null,
                    null, null, null);
             if(cursor.moveToFirst()) {
                 String lift_name = cursor.getString(1);
@@ -58,7 +57,7 @@ public class ViewToday extends Activity {
                 String weight_type = cursor.getString(3);
                 String lift_info = cursor.getString(4);
                 String total_weight = cursor.getString(5);
-                output = output + lift_name + " done using " + weight_type +  ":\n" +
+                output = "Type: " + muscle_group + "\n" +lift_name + " done using " + weight_type +  ":\n" +
                         lift_info + "\n" + "The total weight lifted for this set was: " +
                         total_weight + " lbs\n";
                 while(cursor.moveToNext()) {
@@ -68,9 +67,9 @@ public class ViewToday extends Activity {
                     lift_info = cursor.getString(4);
                     total_weight = cursor.getString(5);
                     output = output + " -------------------------------------\n" +
-                            lift_name + " done using " + weight_type +  "\n" +
+                            "Type: " + muscle_group + "\n" +lift_name + " done using " + weight_type +  ":\n" +
                             lift_info + "\n" + "The total weight lifted for this set was: " +
-                            total_weight + "\n";
+                            total_weight + " lbs\n";;
                 }
                 textView.setText(output);
             }

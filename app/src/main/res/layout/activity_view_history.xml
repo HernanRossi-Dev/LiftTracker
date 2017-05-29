@@ -14,11 +14,11 @@
         android:background="@color/white"
         android:textColor="@color/primary"
         android:textStyle="bold"
-        android:textSize="18dp"/>
-        <ListView
+        android:textSize="18sp"/>
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/listview_history"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/customlistselector">
-        </ListView>
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+        </android.support.v7.widget.RecyclerView>
 </LinearLayout>
